@@ -13,7 +13,7 @@ def holiday(name, days):
         if workdf['Date'][i] in days:
             for s in range(0,len(workers)):
                 temp = difflib.SequenceMatcher(None,name,workers[s])
-                if temp.ratio() > 0.5:
+                if temp.ratio() > 0.8:
                     workers[s] = 'Replace'
         workdf['Workers'][i] = workers
     return workdf
@@ -58,7 +58,7 @@ def balance(schedule, workers, daysOff, prevResult):
         for worker in workers:
             for name in dailyAssigned:
                 temp = difflib.SequenceMatcher(None,worker,name)
-                if temp.ratio() > 0.3:
+                if temp.ratio() > 0.8:
                     if worker in opertimes:
                         number = opertimes.get(worker)
                         number += 1
@@ -89,7 +89,7 @@ def balance(schedule, workers, daysOff, prevResult):
             for l in range(0,len(workdf['Workers'][i])):
                 replace = result[count][0]
                 temp = difflib.SequenceMatcher(None,replace,workdf['Workers'][i][l])
-                if temp.ratio() > 0.3:
+                if temp.ratio() > 0.8:
                     count += 1
             while workdf['Workers'][i][x] == "Replace":
                 replace = result[count][0]
